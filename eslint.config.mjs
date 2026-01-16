@@ -25,7 +25,6 @@ export default [
                 cssFiles: [
                     "**/*.css",
                     "!**/node_modules",
-                    "!**/.*",
                     "!**/dist",
                     "!**/build",
                 ],
@@ -82,7 +81,6 @@ export default [
             "storybook-static/**",
             ".storybook/storybook-static/**",
             "next-env.d.ts",
-            "**/*.stories.tsx",
         ],
     },
 ];

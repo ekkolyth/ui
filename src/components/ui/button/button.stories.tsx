@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import * as React from "react";
 import { Mail } from "lucide-react";
 
@@ -12,7 +12,7 @@ type ButtonStoryArgs = React.ComponentProps<typeof Button> & {
 const meta: Meta<ButtonStoryArgs> = {
     title: "UI/Button",
     component: Button,
-    tags: ['autodocs'],
+    tags: ["autodocs"],
     argTypes: {
         variant: {
             control: "select",
