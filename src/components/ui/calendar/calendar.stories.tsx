@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import * as React from "react";
+import type { DateRange } from "react-day-picker";
 
 import { Calendar } from "./index";
 
@@ -34,9 +35,7 @@ export const Multiple: Story = {
 
 export const Range: Story = {
     render: () => {
-        const [dateRange, setDateRange] = React.useState<
-            { from: Date; to: Date } | undefined
-        >();
+        const [dateRange, setDateRange] = React.useState<DateRange | undefined>();
         return (
             <Calendar
                 mode="range"

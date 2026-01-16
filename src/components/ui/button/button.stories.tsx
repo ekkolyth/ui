@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import * as React from "react";
 import { Mail } from "lucide-react";
+import { toast } from "sonner";
 
 import { Button } from "./index";
+import { Toaster } from "@/src/components/ui/sonner";
 
 // Extend Button props with Storybook-only controls
 type ButtonStoryArgs = React.ComponentProps<typeof Button> & {
@@ -63,10 +65,16 @@ export const Default: Story = {
     render: (args) => {
         const { showIcon, ...buttonProps } = args;
         return (
-            <Button {...buttonProps}>
-                {showIcon && <Mail data-icon="inline-start" />}
-                {args.children}
-            </Button>
+            <>
+                <Toaster position="bottom-right" />
+                <Button
+                    {...buttonProps}
+                    onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+                >
+                    {showIcon && <Mail data-icon="inline-start" />}
+                    {args.children}
+                </Button>
+            </>
         );
     },
 };
@@ -80,10 +88,16 @@ export const Outline: Story = {
     render: (args) => {
         const { showIcon, ...buttonProps } = args;
         return (
-            <Button {...buttonProps}>
-                {showIcon && <Mail data-icon="inline-start" />}
-                {args.children}
-            </Button>
+            <>
+                <Toaster position="bottom-right" />
+                <Button
+                    {...buttonProps}
+                    onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+                >
+                    {showIcon && <Mail data-icon="inline-start" />}
+                    {args.children}
+                </Button>
+            </>
         );
     },
 };
@@ -97,10 +111,16 @@ export const Secondary: Story = {
     render: (args) => {
         const { showIcon, ...buttonProps } = args;
         return (
-            <Button {...buttonProps}>
-                {showIcon && <Mail data-icon="inline-start" />}
-                {args.children}
-            </Button>
+            <>
+                <Toaster position="bottom-right" />
+                <Button
+                    {...buttonProps}
+                    onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+                >
+                    {showIcon && <Mail data-icon="inline-start" />}
+                    {args.children}
+                </Button>
+            </>
         );
     },
 };
@@ -114,10 +134,16 @@ export const Ghost: Story = {
     render: (args) => {
         const { showIcon, ...buttonProps } = args;
         return (
-            <Button {...buttonProps}>
-                {showIcon && <Mail data-icon="inline-start" />}
-                {args.children}
-            </Button>
+            <>
+                <Toaster position="bottom-right" />
+                <Button
+                    {...buttonProps}
+                    onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+                >
+                    {showIcon && <Mail data-icon="inline-start" />}
+                    {args.children}
+                </Button>
+            </>
         );
     },
 };
@@ -131,10 +157,16 @@ export const Destructive: Story = {
     render: (args) => {
         const { showIcon, ...buttonProps } = args;
         return (
-            <Button {...buttonProps}>
-                {showIcon && <Mail data-icon="inline-start" />}
-                {args.children}
-            </Button>
+            <>
+                <Toaster position="bottom-right" />
+                <Button
+                    {...buttonProps}
+                    onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+                >
+                    {showIcon && <Mail data-icon="inline-start" />}
+                    {args.children}
+                </Button>
+            </>
         );
     },
 };
@@ -148,10 +180,16 @@ export const Link: Story = {
     render: (args) => {
         const { showIcon, ...buttonProps } = args;
         return (
-            <Button {...buttonProps}>
-                {showIcon && <Mail data-icon="inline-start" />}
-                {args.children}
-            </Button>
+            <>
+                <Toaster position="bottom-right" />
+                <Button
+                    {...buttonProps}
+                    onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+                >
+                    {showIcon && <Mail data-icon="inline-start" />}
+                    {args.children}
+                </Button>
+            </>
         );
     },
 };
@@ -161,4 +199,13 @@ export const Icon: Story = {
         size: "icon",
         children: <Mail />,
     },
+    render: (args) => (
+        <>
+            <Toaster position="bottom-right" />
+            <Button
+                {...args}
+                onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+            />
+        </>
+    ),
 };
