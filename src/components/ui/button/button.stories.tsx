@@ -1,11 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import * as React from "react";
 import { Mail } from "lucide-react";
 
 import { Button } from "./index";
 
-const meta: Meta<typeof Button> = {
+// Extend Button props with Storybook-only controls
+type ButtonStoryArgs = React.ComponentProps<typeof Button> & {
+    showIcon?: boolean;
+};
+
+const meta: Meta<ButtonStoryArgs> = {
     title: "UI/Button",
     component: Button,
+    tags: ['autodocs'],
     argTypes: {
         variant: {
             control: "select",
@@ -45,7 +52,7 @@ const meta: Meta<typeof Button> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<ButtonStoryArgs>;
 
 export const Default: Story = {
     args: {
@@ -53,12 +60,15 @@ export const Default: Story = {
         children: "Button",
         showIcon: false,
     },
-    render: ({ showIcon, ...args }) => (
-        <Button {...args}>
-            {showIcon && <Mail data-icon="inline-start" />}
-            {args.children}
-        </Button>
-    ),
+    render: (args) => {
+        const { showIcon, ...buttonProps } = args;
+        return (
+            <Button {...buttonProps}>
+                {showIcon && <Mail data-icon="inline-start" />}
+                {args.children}
+            </Button>
+        );
+    },
 };
 
 export const Outline: Story = {
@@ -67,12 +77,15 @@ export const Outline: Story = {
         children: "Outline",
         showIcon: false,
     },
-    render: ({ showIcon, ...args }) => (
-        <Button {...args}>
-            {showIcon && <Mail data-icon="inline-start" />}
-            {args.children}
-        </Button>
-    ),
+    render: (args) => {
+        const { showIcon, ...buttonProps } = args;
+        return (
+            <Button {...buttonProps}>
+                {showIcon && <Mail data-icon="inline-start" />}
+                {args.children}
+            </Button>
+        );
+    },
 };
 
 export const Secondary: Story = {
@@ -81,12 +94,15 @@ export const Secondary: Story = {
         children: "Secondary",
         showIcon: false,
     },
-    render: ({ showIcon, ...args }) => (
-        <Button {...args}>
-            {showIcon && <Mail data-icon="inline-start" />}
-            {args.children}
-        </Button>
-    ),
+    render: (args) => {
+        const { showIcon, ...buttonProps } = args;
+        return (
+            <Button {...buttonProps}>
+                {showIcon && <Mail data-icon="inline-start" />}
+                {args.children}
+            </Button>
+        );
+    },
 };
 
 export const Ghost: Story = {
@@ -95,12 +111,15 @@ export const Ghost: Story = {
         children: "Ghost",
         showIcon: false,
     },
-    render: ({ showIcon, ...args }) => (
-        <Button {...args}>
-            {showIcon && <Mail data-icon="inline-start" />}
-            {args.children}
-        </Button>
-    ),
+    render: (args) => {
+        const { showIcon, ...buttonProps } = args;
+        return (
+            <Button {...buttonProps}>
+                {showIcon && <Mail data-icon="inline-start" />}
+                {args.children}
+            </Button>
+        );
+    },
 };
 
 export const Destructive: Story = {
@@ -109,12 +128,15 @@ export const Destructive: Story = {
         children: "Destructive",
         showIcon: false,
     },
-    render: ({ showIcon, ...args }) => (
-        <Button {...args}>
-            {showIcon && <Mail data-icon="inline-start" />}
-            {args.children}
-        </Button>
-    ),
+    render: (args) => {
+        const { showIcon, ...buttonProps } = args;
+        return (
+            <Button {...buttonProps}>
+                {showIcon && <Mail data-icon="inline-start" />}
+                {args.children}
+            </Button>
+        );
+    },
 };
 
 export const Link: Story = {
@@ -123,12 +145,15 @@ export const Link: Story = {
         children: "Link",
         showIcon: false,
     },
-    render: ({ showIcon, ...args }) => (
-        <Button {...args}>
-            {showIcon && <Mail data-icon="inline-start" />}
-            {args.children}
-        </Button>
-    ),
+    render: (args) => {
+        const { showIcon, ...buttonProps } = args;
+        return (
+            <Button {...buttonProps}>
+                {showIcon && <Mail data-icon="inline-start" />}
+                {args.children}
+            </Button>
+        );
+    },
 };
 
 export const Icon: Story = {

@@ -1,0 +1,21 @@
+/* Storybook Docs page background - zinc-50 (#fafafa) */
+/* Target the main docs container for page background */
+.sbdocs-wrapper,
+.sb-docs-container,
+[data-testid="docs-root"],
+body {
+  background-color: #fafafa !important;
+}
+
+/* Remove white backgrounds from containers around previews */
+.sbdocs-content,
+.docs-story {
+  background-color: transparent !important;
+}
+
+/* Keep only the actual component preview/canvas white */
+.sbdocs-preview > div,
+.sbdocs-preview .os-host,
+.sbdocs-preview iframe {
+  background-color: white !important;
+}
