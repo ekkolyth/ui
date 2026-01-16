@@ -7,7 +7,6 @@ import {
     EmptyHeader,
     EmptyTitle,
     EmptyDescription,
-    EmptyContent,
     EmptyMedia,
 } from "./index";
 

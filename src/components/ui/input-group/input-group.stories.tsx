@@ -7,7 +7,6 @@ import {
     InputGroupAddon,
     InputGroupButton,
     InputGroupInput,
-    InputGroupText,
 } from "./index";
 import { Button } from "@/src/components/ui/button";
 

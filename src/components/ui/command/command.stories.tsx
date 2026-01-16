@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import * as React from "react";
-import { Search } from "lucide-react";
 
 import {
     Command,
