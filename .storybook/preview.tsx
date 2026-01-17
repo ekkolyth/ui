@@ -12,6 +12,7 @@ const preview: Preview = {
         'Catppuccin Frappe': 'frappe',
         'Catppuccin Macchiato': 'macchiato',
         'Catppuccin Mocha': 'mocha',
+        'Tokyo Night': 'tokyo-night',
       },
       defaultTheme: 'Ekko Light',
       attributeName: 'data-theme',

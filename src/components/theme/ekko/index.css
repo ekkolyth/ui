@@ -5,6 +5,7 @@
 @import "../catpuccin/latte.css";
 @import "../catpuccin/frappe.css";
 @import "../catpuccin/macchiato.css";
+@import "../tokyo-night/index.css";
 
 @custom-variant dark (&:is(.dark *));
 

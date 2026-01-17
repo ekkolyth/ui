@@ -1,0 +1,35 @@
+/* Tokyo Night Theme - Dark Mode */
+html[data-theme="tokyo-night"] {
+  --radius: 0.625rem;
+  --background: hsl(233 16.00% 13.33%); /* #1a1b26 - dark blue-gray */
+  --foreground: hsl(228 23.53% 87.06%); /* #c0caf5 - light blue-gray */
+  --card: hsl(233 16.00% 13.33%); /* #1a1b26 */
+  --card-foreground: hsl(228 23.53% 87.06%); /* #c0caf5 */
+  --popover: hsl(233 16.00% 13.33%); /* #1a1b26 */
+  --popover-foreground: hsl(228 23.53% 87.06%); /* #c0caf5 */
+  --primary: hsl(217 91.67% 79.80%); /* #7aa2f7 - Tokyo Night blue */
+  --primary-foreground: hsl(233 16.00% 13.33%); /* #1a1b26 */
+  --secondary: hsl(233 18.18% 15.29%); /* #24283b - darker blue-gray */
+  --secondary-foreground: hsl(228 23.53% 87.06%); /* #c0caf5 */
+  --muted: hsl(233 18.18% 15.29%); /* #24283b */
+  --muted-foreground: hsl(230 13.33% 66.67%); /* #565f89 - muted text */
+  --accent: hsl(233 18.18% 15.29%); /* #24283b */
+  --accent-foreground: hsl(228 23.53% 87.06%); /* #c0caf5 */
+  --destructive: hsl(354 65.22% 78.24%); /* #f7768e - Tokyo Night red */
+  --border: hsl(233 18.18% 20.00%); /* #2f3549 - border color */
+  --input: hsl(233 18.18% 20.00%); /* #2f3549 */
+  --ring: hsl(217 91.67% 79.80%); /* #7aa2f7 - primary blue */
+  --chart-1: hsl(354 65.22% 78.24%); /* #f7768e - red */
+  --chart-2: hsl(158 64.00% 71.37%); /* #9ece6a - green */
+  --chart-3: hsl(217 91.67% 79.80%); /* #7aa2f7 - blue */
+  --chart-4: hsl(38 92.00% 72.16%); /* #e0af68 - yellow */
+  --chart-5: hsl(266 85.00% 78.24%); /* #bb9af7 - purple */
+  --sidebar: hsl(233 18.18% 12.94%); /* #16161e - darker background */
+  --sidebar-foreground: hsl(228 23.53% 87.06%); /* #c0caf5 */
+  --sidebar-primary: hsl(217 91.67% 79.80%); /* #7aa2f7 */
+  --sidebar-primary-foreground: hsl(233 16.00% 13.33%); /* #1a1b26 */
+  --sidebar-accent: hsl(233 18.18% 15.29%); /* #24283b */
+  --sidebar-accent-foreground: hsl(228 23.53% 87.06%); /* #c0caf5 */
+  --sidebar-border: hsl(233 18.18% 20.00%); /* #2f3549 */
+  --sidebar-ring: hsl(233 18.18% 20.00%); /* #2f3549 */
+}
