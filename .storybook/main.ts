@@ -12,7 +12,7 @@ const config: StorybookConfig = {
         "@storybook/addon-a11y",
         "@storybook/addon-docs",
         "@storybook/addon-onboarding",
-        "@storybook/addon-themes",
+        "@vueless/storybook-dark-mode",
     ],
     framework: "@storybook/nextjs-vite",
 };

@@ -1,85 +1,88 @@
-import type { Preview } from "@storybook/nextjs-vite";
-import { withThemeFromJSXProvider } from "@storybook/addon-themes";
-import { ThemeProvider } from "next-themes";
-import React, { useEffect } from "react";
-import "../src/globals.css";
-import "./docs.css";
+import type { Preview } from '@storybook/nextjs-vite';
+import React, { useEffect, useState, useCallback } from 'react';
+import { DocsContainer } from '@storybook/addon-docs/blocks';
+import { themes } from 'storybook/theming';
+import { addons } from 'storybook/preview-api';
+import { DARK_MODE_EVENT_NAME } from '@vueless/storybook-dark-mode';
+import { NextThemeProvider } from '../src/components/theme';
+import '../src/components/theme/ekko/index.css';
+import './docs.css';
 
-// Theme objects for Storybook (next-themes uses string theme names)
-// We create simple objects that contain the theme name
-const lightTheme = { name: "light" } as const;
-const darkTheme = { name: "dark" } as const;
+const channel = addons.getChannel();
 
-// Wrapper component to configure ThemeProvider for Storybook
-const StorybookThemeProvider = ({
-    theme,
-    children,
-}: {
-    theme?: { name?: string } | string;
-    children: React.ReactNode;
-}) => {
-    // Extract theme name from theme object
-    // withThemeFromJSXProvider passes the entire theme object
-    let themeName = "light";
-    if (typeof theme === "string") {
-        themeName = theme;
-    } else if (theme && typeof theme === "object") {
-        // Check if it's our theme object by reference or by name property
-        if (theme === darkTheme || theme.name === "dark") {
-            themeName = "dark";
-        } else if (theme === lightTheme || theme.name === "light") {
-            themeName = "light";
-        } else if (theme.name) {
-            themeName = theme.name;
-        }
-    }
+function ThemeWrapper({ children }: { children: React.ReactNode }) {
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
-    // Manually apply the class to the HTML element to ensure it works
-    // This is a fallback in case next-themes doesn't apply it correctly in Storybook
-    useEffect(() => {
-        const html = document.documentElement;
-        if (themeName === "dark") {
-            html.classList.add("dark");
-        } else {
-            html.classList.remove("dark");
-        }
-    }, [themeName]);
+  const handleColorScheme = useCallback((value: boolean) => {
+    setIsDarkMode(value);
+  }, []);
 
-    return (
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem={false}
-            forcedTheme={themeName}
-        >
-            {children}
-        </ThemeProvider>
-    );
-};
+  useEffect(() => {
+    channel.on(DARK_MODE_EVENT_NAME, handleColorScheme);
+    return () => {
+      channel.off(DARK_MODE_EVENT_NAME, handleColorScheme);
+    };
+  }, [handleColorScheme]);
+
+  return (
+    <NextThemeProvider
+      attribute='class'
+      defaultTheme={isDarkMode ? 'dark' : 'light'}
+      forcedTheme={isDarkMode ? 'dark' : 'light'}
+    >
+      {children}
+    </NextThemeProvider>
+  );
+}
+
+function ThemedDocsContainer(props: React.ComponentProps<typeof DocsContainer>) {
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+
+  const handleColorScheme = useCallback((value: boolean) => {
+    setIsDarkMode(value);
+  }, []);
+
+  useEffect(() => {
+    channel.on(DARK_MODE_EVENT_NAME, handleColorScheme);
+    return () => {
+      channel.off(DARK_MODE_EVENT_NAME, handleColorScheme);
+    };
+  }, [handleColorScheme]);
+
+  return (
+    <DocsContainer
+      {...props}
+      theme={isDarkMode ? themes.dark : themes.light}
+    />
+  );
+}
 
 const preview: Preview = {
-    parameters: {
-        controls: {
-            matchers: {
-                color: /(background|color)$/i,
-                date: /Date$/i,
-            },
-        },
-        docs: {
-            autodocs: "tag",
-        },
+  decorators: [
+    (Story) => (
+      <ThemeWrapper>
+        <Story />
+      </ThemeWrapper>
+    ),
+  ],
+  parameters: {
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
     },
-    tags: ["autodocs"],
-    decorators: [
-        withThemeFromJSXProvider({
-            themes: {
-                light: lightTheme,
-                dark: darkTheme,
-            },
-            defaultTheme: "light",
-            Provider: StorybookThemeProvider,
-        }),
-    ],
+    docs: {
+      autodocs: 'tag',
+      container: ThemedDocsContainer,
+    },
+    darkMode: {
+      classTarget: 'html',
+      stylePreview: true,
+      darkClass: 'dark',
+    },
+  },
+  tags: ['autodocs'],
 };
 
 export default preview;
