@@ -1,0 +1,36 @@
+/* Catppuccin Latte Theme - Scoped for Storybook */
+html.theme-catpuccin-latte,
+html .theme-catpuccin-latte {
+  --radius: 0.625rem;
+  --background: 220 23.08% 94.90%; /* base */
+  --foreground: 234 16.02% 35.49%; /* text */
+  --card: 220 23.08% 94.90%; /* base */
+  --card-foreground: 234 16.02% 35.49%; /* text */
+  --popover: 220 23.08% 94.90%; /* base */
+  --popover-foreground: 234 16.02% 35.49%; /* text */
+  --primary: 266 85.05% 58.04%; /* accent - Mauve */
+  --primary-foreground: 220 23.08% 94.90%; /* base */
+  --secondary: 223 15.91% 82.75%; /* surface0 */
+  --secondary-foreground: 234 16.02% 35.49%; /* text */
+  --muted: 223 15.91% 82.75%; /* surface0 */
+  --muted-foreground: 233 12.80% 41.37%; /* subtext1 */
+  --accent: 223 15.91% 82.75%; /* surface0 */
+  --accent-foreground: 234 16.02% 35.49%; /* text */
+  --destructive: 347 86.67% 44.12%; /* red */
+  --border: 225 13.56% 76.86%; /* surface1 */
+  --input: 225 13.56% 76.86%; /* surface1 */
+  --ring: 234 16.02% 35.49%; /* text */
+  --chart-1: 345 57.65% 74.12%; /* red */
+  --chart-2: 185 37.25% 70.59%; /* teal */
+  --chart-3: 219 81.96% 78.43%; /* blue */
+  --chart-4: 35 61.18% 76.86%; /* yellow */
+  --chart-5: 113 32.94% 73.33%; /* green */
+  --sidebar: 218 25.10% 93.73%; /* mantle */
+  --sidebar-foreground: 234 16.02% 35.49%; /* text */
+  --sidebar-primary: 266 85.05% 58.04%; /* accent - Mauve */
+  --sidebar-primary-foreground: 220 23.08% 94.90%; /* base */
+  --sidebar-accent: 220 23.08% 94.90%; /* surface0 */
+  --sidebar-accent-foreground: 234 16.02% 35.49%; /* text */
+  --sidebar-border: 225 13.56% 76.86%; /* surface1 */
+  --sidebar-ring: 225 13.56% 76.86%; /* surface1 */
+}
