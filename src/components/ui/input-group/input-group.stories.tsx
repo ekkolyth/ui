@@ -8,7 +8,7 @@ import {
     InputGroupButton,
     InputGroupInput,
 } from "./index";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 const meta: Meta<React.ComponentProps<typeof InputGroup>> = {
     title: "UI/InputGroup",

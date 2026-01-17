@@ -1,35 +1,35 @@
 /* Catppuccin Macchiato Theme - Dark Mode (Mauve accent) */
-:root {
+html[data-theme="macchiato"] {
   --radius: 0.625rem;
-  --background: 232 23.40% 18.43%; /* base */
-  --foreground: 227 68.25% 87.65%; /* text */
-  --card: 232 23.40% 18.43%; /* base */
-  --card-foreground: 227 68.25% 87.65%; /* text */
-  --popover: 232 23.40% 18.43%; /* base */
-  --popover-foreground: 227 68.25% 87.65%; /* text */
-  --primary: 267 82.69% 79.61%; /* accent - Mauve */
-  --primary-foreground: 232 23.40% 18.43%; /* base */
-  --secondary: 230 18.80% 26.08%; /* surface0 */
-  --secondary-foreground: 227 68.25% 87.65%; /* text */
-  --muted: 230 18.80% 26.08%; /* surface0 */
-  --muted-foreground: 228 39.22% 80.00%; /* subtext1 */
-  --accent: 230 18.80% 26.08%; /* surface0 */
-  --accent-foreground: 227 68.25% 87.65%; /* text */
-  --destructive: 351 73.91% 72.94%; /* red */
-  --border: 231 15.61% 33.92%; /* surface1 */
-  --input: 231 15.61% 33.92%; /* surface1 */
-  --ring: 227 68.25% 87.65%; /* text */
-  --chart-1: 333 20.78% 38.04%; /* red */
-  --chart-2: 193 19.61% 38.04%; /* teal */
-  --chart-3: 224 26.67% 41.18%; /* blue */
-  --chart-4: 30 8.24% 42.35%; /* yellow */
-  --chart-5: 139 10.98% 38.82%; /* green */
-  --sidebar: 234 22.75% 17.25%; /* mantle */
-  --sidebar-foreground: 227 68.25% 87.65%; /* text */
-  --sidebar-primary: 267 82.69% 79.61%; /* accent - Mauve */
-  --sidebar-primary-foreground: 232 23.40% 18.43%; /* base */
-  --sidebar-accent: 232 23.40% 18.43%; /* surface0 */
-  --sidebar-accent-foreground: 227 68.25% 87.65%; /* text */
-  --sidebar-border: 231 15.61% 33.92%; /* surface1 */
-  --sidebar-ring: 231 15.61% 33.92%; /* surface1 */
+  --background: hsl(232 23.40% 18.43%); /* base */
+  --foreground: hsl(227 68.25% 87.65%); /* text */
+  --card: hsl(232 23.40% 18.43%); /* base */
+  --card-foreground: hsl(227 68.25% 87.65%); /* text */
+  --popover: hsl(232 23.40% 18.43%); /* base */
+  --popover-foreground: hsl(227 68.25% 87.65%); /* text */
+  --primary: hsl(267 82.69% 79.61%); /* accent - Mauve */
+  --primary-foreground: hsl(232 23.40% 18.43%); /* base */
+  --secondary: hsl(230 18.80% 26.08%); /* surface0 */
+  --secondary-foreground: hsl(227 68.25% 87.65%); /* text */
+  --muted: hsl(230 18.80% 26.08%); /* surface0 */
+  --muted-foreground: hsl(228 39.22% 80.00%); /* subtext1 */
+  --accent: hsl(230 18.80% 26.08%); /* surface0 */
+  --accent-foreground: hsl(227 68.25% 87.65%); /* text */
+  --destructive: hsl(351 73.91% 72.94%); /* red */
+  --border: hsl(231 15.61% 33.92%); /* surface1 */
+  --input: hsl(231 15.61% 33.92%); /* surface1 */
+  --ring: hsl(227 68.25% 87.65%); /* text */
+  --chart-1: hsl(333 20.78% 38.04%); /* red */
+  --chart-2: hsl(193 19.61% 38.04%); /* teal */
+  --chart-3: hsl(224 26.67% 41.18%); /* blue */
+  --chart-4: hsl(30 8.24% 42.35%); /* yellow */
+  --chart-5: hsl(139 10.98% 38.82%); /* green */
+  --sidebar: hsl(234 22.75% 17.25%); /* mantle */
+  --sidebar-foreground: hsl(227 68.25% 87.65%); /* text */
+  --sidebar-primary: hsl(267 82.69% 79.61%); /* accent - Mauve */
+  --sidebar-primary-foreground: hsl(232 23.40% 18.43%); /* base */
+  --sidebar-accent: hsl(232 23.40% 18.43%); /* surface0 */
+  --sidebar-accent-foreground: hsl(227 68.25% 87.65%); /* text */
+  --sidebar-border: hsl(231 15.61% 33.92%); /* surface1 */
+  --sidebar-ring: hsl(231 15.61% 33.92%); /* surface1 */
 }

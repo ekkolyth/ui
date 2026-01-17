@@ -9,7 +9,7 @@ import {
     PopoverTitle,
     PopoverDescription,
 } from "./index";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 const meta: Meta<React.ComponentProps<typeof Popover>> = {
     title: "UI/Popover",
@@ -30,8 +30,9 @@ export const Default: Story = {
                 <PopoverHeader>
                     <PopoverTitle>Are you absolutely sure?</PopoverTitle>
                     <PopoverDescription>
-                        This action cannot be undone. This will permanently delete your
-                        account and remove your data from our servers.
+                        This action cannot be undone. This will permanently
+                        delete your account and remove your data from our
+                        servers.
                     </PopoverDescription>
                 </PopoverHeader>
             </PopoverContent>

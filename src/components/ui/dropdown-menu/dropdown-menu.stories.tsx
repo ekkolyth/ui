@@ -9,7 +9,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "./index";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 const meta: Meta<React.ComponentProps<typeof DropdownMenu>> = {
     title: "UI/DropdownMenu",
@@ -50,7 +50,9 @@ export const WithDestructive: Story = {
                 <DropdownMenuItem>Profile</DropdownMenuItem>
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem variant="destructive">Logout</DropdownMenuItem>
+                <DropdownMenuItem variant="destructive">
+                    Logout
+                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     ),

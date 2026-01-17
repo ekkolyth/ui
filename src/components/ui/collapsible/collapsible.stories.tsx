@@ -1,12 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import * as React from "react";
 
-import {
-    Collapsible,
-    CollapsibleContent,
-    CollapsibleTrigger,
-} from "./index";
-import { Button } from "@/src/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./index";
+import { Button } from "@/components/ui/button";
 import { ChevronDownIcon } from "lucide-react";
 
 const meta: Meta<React.ComponentProps<typeof Collapsible>> = {
@@ -22,7 +18,11 @@ export const Default: Story = {
     render: () => {
         const [open, setOpen] = React.useState(false);
         return (
-            <Collapsible open={open} onOpenChange={setOpen} className="w-[350px] space-y-2">
+            <Collapsible
+                open={open}
+                onOpenChange={setOpen}
+                className="w-[350px] space-y-2"
+            >
                 <div className="flex items-center justify-between space-x-4 px-4">
                     <h4 className="text-sm font-semibold">
                         @peduarte starred 3 repositories

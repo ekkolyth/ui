@@ -16,7 +16,8 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(dirname),
+      '@': path.resolve(dirname, 'src'),
+      '@root': path.resolve(dirname),
     },
   },
   test: {
@@ -44,7 +45,8 @@ export default defineConfig({
         extends: true,
         resolve: {
           alias: {
-            '@': path.resolve(dirname),
+            '@': path.resolve(dirname, 'src'),
+            '@root': path.resolve(dirname),
           },
         },
         test: {

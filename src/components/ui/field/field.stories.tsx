@@ -8,8 +8,8 @@ import {
     FieldError,
     FieldContent,
 } from "./index";
-import { Input } from "@/src/components/ui/input";
-import { Checkbox } from "@/src/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const meta: Meta<React.ComponentProps<typeof Field>> = {
     title: "UI/Field",

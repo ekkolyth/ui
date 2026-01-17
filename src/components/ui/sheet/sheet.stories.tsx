@@ -9,7 +9,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "./index";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 const meta: Meta<React.ComponentProps<typeof Sheet>> = {
     title: "UI/Sheet",
@@ -30,7 +30,8 @@ export const Default: Story = {
                 <SheetHeader>
                     <SheetTitle>Edit profile</SheetTitle>
                     <SheetDescription>
-                        Make changes to your profile here. Click save when you&apos;re done.
+                        Make changes to your profile here. Click save when
+                        you&apos;re done.
                     </SheetDescription>
                 </SheetHeader>
             </SheetContent>

@@ -11,7 +11,7 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from "./index";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 const meta: Meta<React.ComponentProps<typeof Drawer>> = {
     title: "UI/Drawer",
@@ -31,7 +31,9 @@ export const Default: Story = {
             <DrawerContent>
                 <DrawerHeader>
                     <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-                    <DrawerDescription>This action cannot be undone.</DrawerDescription>
+                    <DrawerDescription>
+                        This action cannot be undone.
+                    </DrawerDescription>
                 </DrawerHeader>
                 <DrawerFooter>
                     <Button>Submit</Button>

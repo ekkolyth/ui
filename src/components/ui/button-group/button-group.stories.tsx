@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import * as React from "react";
 
 import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from "./index";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 const meta: Meta<React.ComponentProps<typeof ButtonGroup>> = {
     title: "UI/ButtonGroup",

@@ -4,7 +4,7 @@ import { Mail } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "./index";
-import { Toaster } from "@/src/components/ui/sonner";
+import { Toaster } from "@/components/ui/sonner";
 
 // Extend Button props with Storybook-only controls
 type ButtonStoryArgs = React.ComponentProps<typeof Button> & {
@@ -69,7 +69,9 @@ export const Default: Story = {
                 <Toaster position="bottom-right" />
                 <Button
                     {...buttonProps}
-                    onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+                    onClick={() =>
+                        toast("Achievement Unlocked! Clicked the button 50G")
+                    }
                 >
                     {showIcon && <Mail data-icon="inline-start" />}
                     {args.children}
@@ -92,7 +94,9 @@ export const Outline: Story = {
                 <Toaster position="bottom-right" />
                 <Button
                     {...buttonProps}
-                    onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+                    onClick={() =>
+                        toast("Achievement Unlocked! Clicked the button 50G")
+                    }
                 >
                     {showIcon && <Mail data-icon="inline-start" />}
                     {args.children}
@@ -115,7 +119,9 @@ export const Secondary: Story = {
                 <Toaster position="bottom-right" />
                 <Button
                     {...buttonProps}
-                    onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+                    onClick={() =>
+                        toast("Achievement Unlocked! Clicked the button 50G")
+                    }
                 >
                     {showIcon && <Mail data-icon="inline-start" />}
                     {args.children}
@@ -138,7 +144,9 @@ export const Ghost: Story = {
                 <Toaster position="bottom-right" />
                 <Button
                     {...buttonProps}
-                    onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+                    onClick={() =>
+                        toast("Achievement Unlocked! Clicked the button 50G")
+                    }
                 >
                     {showIcon && <Mail data-icon="inline-start" />}
                     {args.children}
@@ -161,7 +169,9 @@ export const Destructive: Story = {
                 <Toaster position="bottom-right" />
                 <Button
                     {...buttonProps}
-                    onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+                    onClick={() =>
+                        toast("Achievement Unlocked! Clicked the button 50G")
+                    }
                 >
                     {showIcon && <Mail data-icon="inline-start" />}
                     {args.children}
@@ -184,7 +194,9 @@ export const Link: Story = {
                 <Toaster position="bottom-right" />
                 <Button
                     {...buttonProps}
-                    onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+                    onClick={() =>
+                        toast("Achievement Unlocked! Clicked the button 50G")
+                    }
                 >
                     {showIcon && <Mail data-icon="inline-start" />}
                     {args.children}
@@ -204,7 +216,9 @@ export const Icon: Story = {
             <Toaster position="bottom-right" />
             <Button
                 {...args}
-                onClick={() => toast("Achievement Unlocked! Clicked the button 50G")}
+                onClick={() =>
+                    toast("Achievement Unlocked! Clicked the button 50G")
+                }
             />
         </>
     ),

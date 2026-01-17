@@ -11,7 +11,7 @@ import {
     ItemGroup,
     ItemActions,
 } from "./index";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 const meta: Meta<React.ComponentProps<typeof Item>> = {
     title: "UI/Item",

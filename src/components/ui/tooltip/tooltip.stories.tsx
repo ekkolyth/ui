@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import * as React from "react";
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "./index";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 const meta: Meta<React.ComponentProps<typeof Tooltip>> = {
     title: "UI/Tooltip",
@@ -46,7 +46,10 @@ export const LongContent: Story = {
                 <Button variant="outline">Hover me</Button>
             </TooltipTrigger>
             <TooltipContent>
-                <p>This is a longer tooltip message that wraps to multiple lines</p>
+                <p>
+                    This is a longer tooltip message that wraps to multiple
+                    lines
+                </p>
             </TooltipContent>
         </Tooltip>
     ),
