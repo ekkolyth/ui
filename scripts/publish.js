@@ -28,10 +28,18 @@ try {
   console.log(`Building...`);
   execSync('bun run build', { stdio: 'inherit' });
   
-  // Commit changes
+  // Commit changes (if any)
   console.log(`Committing version ${version}...`);
   execSync(`git add package.json`, { stdio: 'inherit' });
-  execSync(`git commit -m "chore: bump version to ${version}"`, { stdio: 'inherit' });
+  // Check if there are any staged changes
+  try {
+    execSync(`git diff --cached --exit-code package.json`, { stdio: 'ignore' });
+    // No changes (exit code 0)
+    console.log(`Version ${version} already set in package.json, skipping commit.`);
+  } catch {
+    // There are changes (exit code 1)
+    execSync(`git commit -m "chore: bump version to ${version}"`, { stdio: 'inherit' });
+  }
   
   // Create and push tag
   const tagName = `v${version}`;
