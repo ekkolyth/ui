@@ -115,6 +115,9 @@
     "sharp",
     "unrs-resolver"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
