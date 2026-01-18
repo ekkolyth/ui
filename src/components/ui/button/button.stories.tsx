@@ -29,21 +29,9 @@ const meta: Meta<ButtonStoryArgs> = {
         },
         size: {
             control: "select",
-            options: [
-                "default",
-                "xs",
-                "sm",
-                "lg",
-                "icon",
-                "icon-xs",
-                "icon-sm",
-                "icon-lg",
-            ],
+            options: ["default", "xs", "sm", "lg"],
         },
         disabled: {
-            control: "boolean",
-        },
-        asChild: {
             control: "boolean",
         },
         showIcon: {
