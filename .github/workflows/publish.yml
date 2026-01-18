@@ -4,7 +4,6 @@ on:
   push:
     tags:
       - 'v*'
-      - 'dev-v*'
 
 jobs:
   publish:
@@ -25,15 +24,5 @@ jobs:
       
       - run: npm run build
       
-      - name: Determine npm tag from git tag
-        id: npm-tag
-        run: |
-          GIT_TAG=${GITHUB_REF#refs/tags/}
-          if [[ "$GIT_TAG" =~ ^dev-v ]]; then
-            echo "tag=dev" >> $GITHUB_OUTPUT
-          else
-            echo "tag=latest" >> $GITHUB_OUTPUT
-          fi
-      
       - name: Publish to npm
-        run: npm publish --tag ${{ steps.npm-tag.outputs.tag }}
+        run: npm publish

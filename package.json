@@ -31,10 +31,9 @@
     "build:clean": "rm -rf dist && npm run build",
     "start": "next start",
     "lint": "eslint",
-    "build-storybook": "storybook build",
-    "ui-update": "node scripts/shadcn-update.js add",
-    "pub-dev": "node scripts/publish.js dev",
-    "pub-latest": "node scripts/publish.js latest"
+        "build-storybook": "storybook build",
+        "ui-update": "node scripts/shadcn-update.js add",
+        "publish": "node scripts/publish.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
