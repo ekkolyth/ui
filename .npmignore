@@ -1,0 +1,46 @@
+# Source files
+src/
+*.tsx
+*.ts
+
+# Build artifacts
+.next/
+node_modules/
+*.tsbuildinfo
+
+# Development files
+.storybook/
+*.stories.tsx
+*.test.tsx
+*.test.ts
+vitest.config.ts
+vitest.setup.ts
+vitest.shims.d.ts
+
+# Configuration files
+tsconfig.json
+tsconfig.tsbuildinfo
+eslint.config.mjs
+postcss.config.mjs
+next.config.ts
+next-env.d.ts
+components.json
+
+# Logs
+*.log
+debug-*.log
+
+# System files
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.iml

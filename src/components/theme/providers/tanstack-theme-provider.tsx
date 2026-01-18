@@ -43,10 +43,18 @@ export function TanstackThemeProvider({
   defaultTheme = "system",
   storageKey = "ekko-ui.theme",
 }: TanstackThemeProviderProps) {
-  const [theme, setThemeState] = useState<Theme>(
-    () => (isBrowser ? (localStorage.getItem(storageKey) as Theme) : defaultTheme) || defaultTheme,
-  )
+  const [theme, setThemeState] = useState<Theme>(defaultTheme)
   const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>("light")
+  const [mounted, setMounted] = useState(false)
+
+  // Sync from localStorage after mount to avoid hydration mismatches
+  useEffect(() => {
+    setMounted(true)
+    const stored = localStorage.getItem(storageKey) as Theme | null
+    if (stored && (stored === "light" || stored === "dark" || stored === "system")) {
+      setThemeState(stored)
+    }
+  }, [storageKey])
 
   useEffect(() => {
     const root = window.document.documentElement

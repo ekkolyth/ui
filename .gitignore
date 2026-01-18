@@ -43,5 +43,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# build output
+/dist
+
 *storybook.log
 storybook-static
