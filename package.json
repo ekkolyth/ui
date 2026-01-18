@@ -1,134 +1,135 @@
 {
-  "name": "@ekkolyth/ui",
-  "version": "0.0.1",
-  "description": "Shared UI Library for my personal projects",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+    "name": "@ekkolyth/ui",
+    "version": "0.0.1",
+    "description": "Shared UI Library for my personal projects",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./providers/next-theme": {
+            "types": "./dist/providers/next-theme-provider.d.ts",
+            "import": "./dist/providers/next-theme-provider.js"
+        },
+        "./providers/tanstack-theme": {
+            "types": "./dist/providers/tanstack-theme-provider.d.ts",
+            "import": "./dist/providers/tanstack-theme-provider.js"
+        }
     },
-    "./providers/next-theme": {
-      "types": "./dist/providers/next-theme-provider.d.ts",
-      "import": "./dist/providers/next-theme-provider.js"
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "dev": "storybook dev -p 3000 --no-open",
+        "build": "tsup",
+        "build:clean": "rm -rf dist && npm run build",
+        "start": "next start",
+        "lint": "eslint",
+        "build-storybook": "storybook build",
+        "ui-update": "node scripts/shadcn-update.js add",
+        "publish": "node scripts/publish.js"
     },
-    "./providers/tanstack-theme": {
-      "types": "./dist/providers/tanstack-theme-provider.d.ts",
-      "import": "./dist/providers/tanstack-theme-provider.js"
-    }
-  },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
-  "scripts": {
-    "dev": "storybook dev -p 3000 --no-open",
-    "build": "tsup",
-    "build:clean": "rm -rf dist && npm run build",
-    "start": "next start",
-    "lint": "eslint",
-    "build-storybook": "storybook build",
-    "ui-update": "node scripts/shadcn-update.js add",
-    "publish": "node scripts/publish.js"
-  },
-  "dependencies": {
-    "@base-ui/react": "^1.0.0",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "cmdk": "^1.1.1",
-    "date-fns": "^4.1.0",
-    "embla-carousel-react": "^8.6.0",
-    "input-otp": "^1.4.2",
-    "lucide-react": "^0.562.0",
-    "next": "16.1.2",
-    "radix-ui": "^1.4.3",
-    "react-day-picker": "^9.13.0",
-    "react-resizable-panels": "^4.4.1",
-    "recharts": "2.15.4",
-    "shadcn": "^3.6.3",
-    "sonner": "^2.0.7",
-    "tailwind-merge": "^3.4.0",
-    "tw-animate-css": "^1.4.0",
-    "vaul": "^1.1.2"
-  },
-  "peerDependencies": {
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0",
-    "next-themes": "^0.4.6",
-    "@tanstack/react-router": "^1.150.0"
-  },
-  "peerDependenciesMeta": {
-    "next-themes": {
-      "optional": true
+    "dependencies": {
+        "@base-ui/react": "^1.0.0",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "cmdk": "^1.1.1",
+        "date-fns": "^4.1.0",
+        "embla-carousel-react": "^8.6.0",
+        "input-otp": "^1.4.2",
+        "lucide-react": "^0.562.0",
+        "next": "16.1.2",
+        "radix-ui": "^1.4.3",
+        "react-day-picker": "^9.13.0",
+        "react-resizable-panels": "^4.4.1",
+        "recharts": "2.15.4",
+        "shadcn": "^3.6.3",
+        "sonner": "^2.0.7",
+        "tailwind-merge": "^3.4.0",
+        "tw-animate-css": "^1.4.0",
+        "vaul": "^1.1.2"
     },
-    "@tanstack/react-router": {
-      "optional": true
-    }
-  },
-  "devDependencies": {
-    "@chromatic-com/storybook": "^5.0.0",
-    "@eslint/js": "^9.39.2",
-    "@storybook/addon-a11y": "^10.1.11",
-    "@storybook/addon-docs": "^10.1.11",
-    "@storybook/addon-onboarding": "^10.1.11",
-    "@storybook/addon-themes": "^10.1.11",
-    "@storybook/addon-vitest": "^10.1.11",
-    "@storybook/nextjs-vite": "^10.1.11",
-    "@tailwindcss/postcss": "^4",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.1",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@vitejs/plugin-react": "^5.1.2",
-    "@vitest/browser-playwright": "^4.0.17",
-    "@vitest/coverage-v8": "^4.0.17",
-    "@vueless/storybook-dark-mode": "^10.0.6",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.2",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-storybook": "^10.1.11",
-    "eslint-plugin-tailwindcss": "npm:@hyoban/eslint-plugin-tailwindcss@^4.0.0-alpha.13",
-    "globals": "^17.0.0",
-    "jsdom": "^27.4.0",
-    "playwright": "^1.57.0",
-    "storybook": "^10.1.11",
-    "tailwindcss": "^4",
-    "typescript": "^5",
-    "typescript-eslint": "^8.53.0",
-    "tsup": "^8.0.1",
-    "vite": "^7.3.1",
-    "vite-tsconfig-paths": "^6.0.4",
-    "vitest": "^4.0.17"
-  },
-  "ignoreScripts": [
-    "sharp",
-    "unrs-resolver"
-  ],
-  "trustedDependencies": [
-    "sharp",
-    "unrs-resolver"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "keywords": [
-    "theme",
-    "dark-mode",
-    "next-themes",
-    "tanstack-router",
-    "react"
-  ],
-  "author": ""
+    "peerDependencies": {
+        "react": "^18.0.0 || ^19.0.0",
+        "react-dom": "^18.0.0 || ^19.0.0",
+        "next-themes": "^0.4.6",
+        "@tanstack/react-router": "^1.150.0"
+    },
+    "peerDependenciesMeta": {
+        "next-themes": {
+            "optional": true
+        },
+        "@tanstack/react-router": {
+            "optional": true
+        }
+    },
+    "devDependencies": {
+        "@chromatic-com/storybook": "^5.0.0",
+        "@eslint/js": "^9.39.2",
+        "@storybook/addon-a11y": "^10.1.11",
+        "@storybook/addon-docs": "^10.1.11",
+        "@storybook/addon-onboarding": "^10.1.11",
+        "@storybook/addon-themes": "^10.1.11",
+        "@storybook/addon-vitest": "^10.1.11",
+        "@storybook/nextjs-vite": "^10.1.11",
+        "@tailwindcss/postcss": "^4",
+        "@testing-library/jest-dom": "^6.9.1",
+        "@testing-library/react": "^16.3.1",
+        "@testing-library/user-event": "^14.6.1",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "@vitejs/plugin-react": "^5.1.2",
+        "@vitest/browser-playwright": "^4.0.17",
+        "@vitest/coverage-v8": "^4.0.17",
+        "@vueless/storybook-dark-mode": "^10.0.6",
+        "eslint": "^9",
+        "eslint-config-next": "16.1.2",
+        "eslint-plugin-react": "^7.37.5",
+        "eslint-plugin-react-hooks": "^7.0.1",
+        "eslint-plugin-storybook": "^10.1.11",
+        "eslint-plugin-tailwindcss": "npm:@hyoban/eslint-plugin-tailwindcss@^4.0.0-alpha.13",
+        "globals": "^17.0.0",
+        "jsdom": "^27.4.0",
+        "playwright": "^1.57.0",
+        "storybook": "^10.1.11",
+        "tailwindcss": "^4",
+        "typescript": "^5",
+        "typescript-eslint": "^8.53.0",
+        "tsup": "^8.0.1",
+        "vite": "^7.3.1",
+        "vite-tsconfig-paths": "^6.0.4",
+        "vitest": "^4.0.17"
+    },
+    "ignoreScripts": [
+        "sharp",
+        "unrs-resolver"
+    ],
+    "trustedDependencies": [
+        "sharp",
+        "unrs-resolver"
+    ],
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "keywords": [
+        "theme",
+        "dark-mode",
+        "next-themes",
+        "tanstack-router",
+        "react"
+    ],
+    "author": ""
 }
