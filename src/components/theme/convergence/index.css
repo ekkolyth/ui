@@ -6,6 +6,7 @@
 @import "../catpuccin/frappe.css";
 @import "../catpuccin/macchiato.css";
 @import "../tokyo-night/index.css";
+@import "../ekko-os/index.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -87,6 +88,7 @@
     --sidebar-ring: oklch(0.705 0.015 286.067);
 }
 
+/* Convergence - Light */
 html[data-theme="light"] {
     --background: oklch(1 0 0);
     --foreground: oklch(0.141 0.005 285.823);
@@ -122,6 +124,7 @@ html[data-theme="light"] {
     --sidebar-ring: oklch(0.705 0.015 286.067);
 }
 
+/* Convergence - Dark */
 html[data-theme="dark"] {
     --background: oklch(0.141 0.005 285.823);
     --foreground: oklch(0.985 0 0);
