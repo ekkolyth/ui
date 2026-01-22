@@ -37,14 +37,38 @@
       "types": "./dist/providers/tanstack-theme-provider.d.ts",
       "import": "./dist/providers/tanstack-theme-provider.js"
     },
-    "./themes": "./dist/themes.css",
-    "./catpuccin/latte": "./dist/catpuccin/latte.css",
-    "./catpuccin/frappe": "./dist/catpuccin/frappe.css",
-    "./catpuccin/macchiato": "./dist/catpuccin/macchiato.css",
-    "./catpuccin/mocha": "./dist/catpuccin/mocha.css",
-    "./ekko-os": "./dist/ekko-os.css",
-    "./tokyo-night": "./dist/tokyo-night.css",
-    "./convergence": "./dist/convergence.css"
+    "./themes": {
+      "style": "./dist/themes.css",
+      "default": "./dist/themes.css"
+    },
+    "./catpuccin/latte": {
+      "style": "./dist/catpuccin/latte.css",
+      "default": "./dist/catpuccin/latte.css"
+    },
+    "./catpuccin/frappe": {
+      "style": "./dist/catpuccin/frappe.css",
+      "default": "./dist/catpuccin/frappe.css"
+    },
+    "./catpuccin/macchiato": {
+      "style": "./dist/catpuccin/macchiato.css",
+      "default": "./dist/catpuccin/macchiato.css"
+    },
+    "./catpuccin/mocha": {
+      "style": "./dist/catpuccin/mocha.css",
+      "default": "./dist/catpuccin/mocha.css"
+    },
+    "./ekko-os": {
+      "style": "./dist/ekko-os.css",
+      "default": "./dist/ekko-os.css"
+    },
+    "./tokyo-night": {
+      "style": "./dist/tokyo-night.css",
+      "default": "./dist/tokyo-night.css"
+    },
+    "./convergence": {
+      "style": "./dist/convergence.css",
+      "default": "./dist/convergence.css"
+    }
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
