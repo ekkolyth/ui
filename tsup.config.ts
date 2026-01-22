@@ -1,12 +1,13 @@
 import { defineConfig } from 'tsup'
+import { copyFileSync, mkdirSync, existsSync, readFileSync, writeFileSync } from 'fs'
 
 export default defineConfig({
   entry: {
     index: 'src/index.ts',
     next: 'src/next.tsx',
     tanstack: 'src/tanstack.tsx',
-    'providers/next-theme-provider': 'src/components/theme/providers/next-theme-provider.tsx',
-    'providers/tanstack-theme-provider': 'src/components/theme/providers/tanstack-theme-provider.tsx',
+    'providers/next-theme-provider': 'src/components/themes/providers/next-theme-provider.tsx',
+    'providers/tanstack-theme-provider': 'src/components/themes/providers/tanstack-theme-provider.tsx',
   },
   format: ['esm'],
   dts: true,
@@ -16,4 +17,29 @@ export default defineConfig({
   sourcemap: false,
   treeshake: true,
   tsconfig: 'tsconfig.build.json',
+  onSuccess: async () => {
+    // Copy catpuccin themes
+    const catpuccinDir = 'dist/catpuccin'
+    if (!existsSync(catpuccinDir)) {
+      mkdirSync(catpuccinDir, { recursive: true })
+    }
+    copyFileSync('src/components/themes/catpuccin/latte.css', 'dist/catpuccin/latte.css')
+    copyFileSync('src/components/themes/catpuccin/frappe.css', 'dist/catpuccin/frappe.css')
+    copyFileSync('src/components/themes/catpuccin/macchiato.css', 'dist/catpuccin/macchiato.css')
+    copyFileSync('src/components/themes/catpuccin/mocha.css', 'dist/catpuccin/mocha.css')
+    
+    // Copy individual theme files
+    copyFileSync('src/components/themes/ekko-os/index.css', 'dist/ekko-os.css')
+    copyFileSync('src/components/themes/tokyo-night/index.css', 'dist/tokyo-night.css')
+    copyFileSync('src/components/themes/convergence/index.css', 'dist/convergence.css')
+    
+    // Copy and process main theme index.css - rewrite import paths for dist structure
+    let themeIndexCss = readFileSync('src/components/themes/index.css', 'utf-8')
+    themeIndexCss = themeIndexCss
+      .replace(/@import "\.\/catpuccin\/(.+)\.css";/g, '@import "./catpuccin/$1.css";')
+      .replace(/@import "\.\/ekko-os\/index\.css";/g, '@import "./ekko-os.css";')
+      .replace(/@import "\.\/tokyo-night\/index\.css";/g, '@import "./tokyo-night.css";')
+      .replace(/@import "\.\/convergence\/index\.css";/g, '@import "./convergence.css";')
+    writeFileSync('dist/themes.css', themeIndexCss)
+  },
 })

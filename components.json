@@ -5,7 +5,7 @@
     "tsx": true,
     "tailwind": {
         "config": "",
-        "css": "src/components/theme/ekko/index.css",
+        "css": "src/components/themes/ekko/index.css",
         "baseColor": "zinc",
         "cssVariables": true,
         "prefix": ""

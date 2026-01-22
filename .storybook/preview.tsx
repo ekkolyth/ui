@@ -1,7 +1,7 @@
 import type { Preview } from "@storybook/nextjs-vite";
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import React from "react";
-import "../src/components/theme/convergence/index.css";
+import "../src/components/themes/index.css";
 
 // Ensure Storybook canvas has the theme background
 const globalStyles = `

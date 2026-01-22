@@ -36,7 +36,15 @@
     "./providers/tanstack-theme": {
       "types": "./dist/providers/tanstack-theme-provider.d.ts",
       "import": "./dist/providers/tanstack-theme-provider.js"
-    }
+    },
+    "./themes": "./dist/themes.css",
+    "./catpuccin/latte": "./dist/catpuccin/latte.css",
+    "./catpuccin/frappe": "./dist/catpuccin/frappe.css",
+    "./catpuccin/macchiato": "./dist/catpuccin/macchiato.css",
+    "./catpuccin/mocha": "./dist/catpuccin/mocha.css",
+    "./ekko-os": "./dist/ekko-os.css",
+    "./tokyo-night": "./dist/tokyo-night.css",
+    "./convergence": "./dist/convergence.css"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
