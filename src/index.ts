@@ -1,6 +1,3 @@
-// Theme Providers
-export * from './components/theme/providers/index'
-
 // UI Components
 export * from './components/ui/accordion'
 export * from './components/ui/alert'

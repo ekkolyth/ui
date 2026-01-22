@@ -21,6 +21,14 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./next": {
+      "types": "./dist/next.d.ts",
+      "import": "./dist/next.js"
+    },
+    "./tanstack": {
+      "types": "./dist/tanstack.d.ts",
+      "import": "./dist/tanstack.js"
+    },
     "./providers/next-theme": {
       "types": "./dist/providers/next-theme-provider.d.ts",
       "import": "./dist/providers/next-theme-provider.js"
