@@ -14,24 +14,63 @@ const globalStyles = `
   }
 `;
 
-const withCenteredLayout = (Story: any) => (
-    <div
-        className="bg-background text-foreground"
-        style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "100vh",
-            padding: "1rem",
-            boxSizing: "border-box",
-        }}
-    >
-        <Story />
-    </div>
-);
+const withCenteredLayout = (Story: any, context: any) => {
+    // In docs view, use a lighter layout without full viewport height
+    if (context.viewMode === 'docs') {
+        return (
+            <div
+                className="bg-background text-foreground"
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: "2rem",
+                    boxSizing: "border-box",
+                }}
+            >
+                <Story />
+            </div>
+        );
+    }
+    
+    // In canvas/story view, use full viewport height
+    return (
+        <div
+            className="bg-background text-foreground"
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minHeight: "100vh",
+                padding: "1rem",
+                boxSizing: "border-box",
+            }}
+        >
+            <Story />
+        </div>
+    );
+};
 
 const preview: Preview = {
     decorators: [
+        withThemeByDataAttribute({
+            themes: {
+                // Light Themes
+                "Convergence - Light": "light",
+                "Catppuccin - Latte": "latte",
+                "EkkoOS - Light": "ekkoos-light",
+                "Convergence": "convergence",
+                // Dark Themes
+                "Convergence - Dark": "dark",
+                "Catppuccin - Mocha": "mocha",
+                "Catppuccin - Frappe": "frappe",
+                "Catppuccin - Macchiato": "macchiato",
+                "Tokyo Night": "tokyo-night",
+                "EkkoOS - Dark": "ekkoos-dark",
+            },
+            defaultTheme: "Convergence - Light",
+            attributeName: "data-theme",
+        }),
         (Story) => (
             <>
                 <style>{globalStyles}</style>
@@ -39,21 +78,6 @@ const preview: Preview = {
             </>
         ),
         withCenteredLayout,
-        withThemeByDataAttribute({
-            themes: {
-                "Convergence - Light": "light",
-                "Convergence - Dark": "dark",
-                "EkkoOS - Light": "ekkoos-light",
-                "EkkoOS - Dark": "ekkoos-dark",
-                "Catppuccin - Latte": "latte",
-                "Catppuccin - Frappe": "frappe",
-                "Catppuccin - Macchiato": "macchiato",
-                "Catppuccin - Mocha": "mocha",
-                "Tokyo Night": "tokyo-night",
-            },
-            defaultTheme: "Convergence - Light",
-            attributeName: "data-theme",
-        }),
     ],
     parameters: {
         controls: {

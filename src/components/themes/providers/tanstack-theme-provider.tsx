@@ -1,112 +1,155 @@
 "use client"
 
 import { createContext, use, useEffect, useMemo, useState } from "react"
-import { ScriptOnce } from "@tanstack/react-router"
 
-export type ResolvedTheme = "dark" | "light"
-export type Theme = ResolvedTheme | "system"
+export type SystemTheme = "light" | "dark" | "system" | "normal"
+
+export type ThemeName = 
+  | "mocha" 
+  | "frappe" 
+  | "macchiato" 
+  | "latte" 
+  | "tokyo-night" 
+  | "ekkoos-light" 
+  | "ekkoos-dark"
+  | "light"  // convergence light
+  | "dark"   // convergence dark
+  | "convergence"
 
 interface TanstackThemeProviderProps {
   children: React.ReactNode
-  defaultTheme?: Theme
+  defaultTheme?: SystemTheme
+  lightTheme?: ThemeName | ThemeName[]
+  darkTheme?: ThemeName | ThemeName[]
   storageKey?: string
 }
 
 interface TanstackThemeProviderState {
-  theme: Theme
-  resolvedTheme: ResolvedTheme
-  setTheme: (theme: Theme) => void
+  systemTheme: SystemTheme
+  resolvedTheme: ThemeName
+  availableThemes: {
+    light: ThemeName[]
+    dark: ThemeName[]
+  }
+  setSystemTheme: (theme: SystemTheme) => void
+  setSpecificTheme: (mode: "light" | "dark", theme: ThemeName) => void
 }
 
 const initialState: TanstackThemeProviderState = {
-  theme: "system",
+  systemTheme: "system",
   resolvedTheme: "light",
-  setTheme: () => null,
+  availableThemes: {
+    light: ["light"],
+    dark: ["dark"],
+  },
+  setSystemTheme: () => null,
+  setSpecificTheme: () => null,
 }
 
 const TanstackThemeProviderContext = createContext<TanstackThemeProviderState>(initialState)
 
-const isBrowser = typeof window !== "undefined"
-
-function FunctionOnce<T = unknown>({
-  children,
-  param,
-}: {
-  children: (param: T) => unknown
-  param?: T
-}) {
-  return <ScriptOnce>{`(${children.toString()})(${JSON.stringify(param)})`}</ScriptOnce>
+const resolveSystemTheme = (systemTheme: SystemTheme): "light" | "dark" => {
+  if (systemTheme === "system" || systemTheme === "normal") {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+    }
+    return "light"
+  }
+  return systemTheme
 }
 
 export function TanstackThemeProvider({
   children,
   defaultTheme = "system",
-  storageKey = "ekko-ui.theme",
+  lightTheme = ["light"],
+  darkTheme = ["dark"],
+  storageKey = "ekko-ui",
 }: TanstackThemeProviderProps) {
-  const [theme, setThemeState] = useState<Theme>(defaultTheme)
-  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>("light")
-  const [mounted, setMounted] = useState(false)
+  // Normalize theme arrays
+  const lightThemes = Array.isArray(lightTheme) ? lightTheme : [lightTheme]
+  const darkThemes = Array.isArray(darkTheme) ? darkTheme : [darkTheme]
 
-  // Sync from localStorage after mount to avoid hydration mismatches
-  useEffect(() => {
-    setMounted(true)
-    const stored = localStorage.getItem(storageKey) as Theme | null
-    if (stored && (stored === "light" || stored === "dark" || stored === "system")) {
-      setThemeState(stored)
+  // Initialize state from localStorage
+  const [systemTheme, setSystemThemeState] = useState<SystemTheme>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem(`${storageKey}.theme-mode`) as SystemTheme | null
+      return stored || defaultTheme
     }
-  }, [storageKey])
+    return defaultTheme
+  })
 
+  const [selectedLightTheme, setSelectedLightThemeState] = useState<ThemeName>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem(`${storageKey}.theme-light`) as ThemeName | null
+      return stored && lightThemes.includes(stored) ? stored : lightThemes[0]
+    }
+    return lightThemes[0]
+  })
+
+  const [selectedDarkTheme, setSelectedDarkThemeState] = useState<ThemeName>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem(`${storageKey}.theme-dark`) as ThemeName | null
+      return stored && darkThemes.includes(stored) ? stored : darkThemes[0]
+    }
+    return darkThemes[0]
+  })
+
+  // Resolve the actual theme name to apply
+  const resolvedTheme = useMemo(() => {
+    const resolvedSystem = resolveSystemTheme(systemTheme)
+    return resolvedSystem === "light" ? selectedLightTheme : selectedDarkTheme
+  }, [systemTheme, selectedLightTheme, selectedDarkTheme])
+
+  // Apply theme to document
   useEffect(() => {
-    const root = window.document.documentElement
+    const root = document.documentElement
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
 
-    function updateTheme() {
-      root.classList.remove("light", "dark")
-
-      if (theme === "system") {
-        const systemTheme = mediaQuery.matches ? "dark" : "light"
-        setResolvedTheme(systemTheme)
-        root.classList.add(systemTheme)
-        return
-      }
-
-      setResolvedTheme(theme as ResolvedTheme)
-      root.classList.add(theme)
+    const updateTheme = () => {
+      const resolvedSystem = resolveSystemTheme(systemTheme)
+      const themeToApply = resolvedSystem === "light" ? selectedLightTheme : selectedDarkTheme
+      root.setAttribute("data-theme", themeToApply)
     }
 
-    mediaQuery.addEventListener("change", updateTheme)
     updateTheme()
-
-    return () => mediaQuery.removeEventListener("change", updateTheme)
-  }, [theme])
+    
+    if (systemTheme === "system" || systemTheme === "normal") {
+      mediaQuery.addEventListener("change", updateTheme)
+      return () => mediaQuery.removeEventListener("change", updateTheme)
+    }
+  }, [systemTheme, selectedLightTheme, selectedDarkTheme])
 
   const value = useMemo(
     () => ({
-      theme,
+      systemTheme,
       resolvedTheme,
-      setTheme: (newTheme: Theme) => {
-        localStorage.setItem(storageKey, newTheme)
-        setThemeState(newTheme)
+      availableThemes: {
+        light: lightThemes,
+        dark: darkThemes,
+      },
+      setSystemTheme: (newTheme: SystemTheme) => {
+        if (typeof window !== "undefined") {
+          localStorage.setItem(`${storageKey}.theme-mode`, newTheme)
+        }
+        setSystemThemeState(newTheme)
+      },
+      setSpecificTheme: (mode: "light" | "dark", theme: ThemeName) => {
+        if (typeof window !== "undefined") {
+          const key = mode === "light" ? `${storageKey}.theme-light` : `${storageKey}.theme-dark`
+          localStorage.setItem(key, theme)
+        }
+        if (mode === "light") {
+          setSelectedLightThemeState(theme)
+        } else {
+          setSelectedDarkThemeState(theme)
+        }
       },
     }),
-    [theme, resolvedTheme, storageKey],
+    [systemTheme, resolvedTheme, lightThemes, darkThemes, storageKey],
   )
 
   return (
     <TanstackThemeProviderContext.Provider value={value}>
-      <FunctionOnce param={storageKey}>
-        {(storageKey) => {
-          const theme: string | null = localStorage.getItem(storageKey)
-
-          if (
-            theme === "dark" ||
-            ((theme === null || theme === "system") &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches)
-          ) {
-            document.documentElement.classList.add("dark")
-          }
-        }}
-      </FunctionOnce>
       {children}
     </TanstackThemeProviderContext.Provider>
   )
@@ -115,10 +158,8 @@ export function TanstackThemeProvider({
 // eslint-disable-next-line react-refresh/only-export-components
 export function useTanstackTheme() {
   const context = use(TanstackThemeProviderContext)
-
   if (context === undefined) {
     throw new Error("useTanstackTheme must be used within a TanstackThemeProvider")
   }
-
   return context
 }
