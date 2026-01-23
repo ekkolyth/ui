@@ -1,0 +1,68 @@
+<script>
+  // Set theme synchronously before any rendering to prevent flash
+  (function() {
+    // Map Storybook theme names to data-theme values
+    const themeMap = {
+      'Convergence - Light': 'light',
+      'Catppuccin - Latte': 'latte',
+      'EkkoOS - Light': 'ekkoos-light',
+      'Convergence': 'convergence',
+      'Convergence - Dark': 'dark',
+      'Catppuccin - Mocha': 'mocha',
+      'Catppuccin - Frappe': 'frappe',
+      'Catppuccin - Macchiato': 'macchiato',
+      'Tokyo Night': 'tokyo-night',
+      'EkkoOS - Dark': 'ekkoos-dark',
+    };
+    
+    const defaultTheme = 'light'; // Default to "Convergence - Light"
+    
+    function getThemeFromStorage() {
+      try {
+        // Storybook addon-themes uses this key
+        const storedTheme = localStorage.getItem('sb-addon-themes-3');
+        if (storedTheme) {
+          try {
+            const parsed = JSON.parse(storedTheme);
+            const selectedTheme = parsed.selected || defaultTheme;
+            return themeMap[selectedTheme] || defaultTheme;
+          } catch (e) {
+            return defaultTheme;
+          }
+        }
+      } catch (e) {
+        // Ignore errors
+      }
+      return defaultTheme;
+    }
+    
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+    
+    // Apply theme immediately on load
+    applyTheme(getThemeFromStorage());
+    
+    // Listen for storage changes (when theme is switched)
+    window.addEventListener('storage', function(e) {
+      if (e.key === 'sb-addon-themes-3') {
+        applyTheme(getThemeFromStorage());
+      }
+    });
+    
+    // Also listen for custom events that Storybook might dispatch
+    window.addEventListener('theme-changed', function() {
+      applyTheme(getThemeFromStorage());
+    });
+    
+    // Poll for changes (fallback for same-tab changes)
+    let lastTheme = getThemeFromStorage();
+    setInterval(function() {
+      const currentTheme = getThemeFromStorage();
+      if (currentTheme !== lastTheme) {
+        lastTheme = currentTheme;
+        applyTheme(currentTheme);
+      }
+    }, 100);
+  })();
+</script>

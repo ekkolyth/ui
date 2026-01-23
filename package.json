@@ -16,6 +16,23 @@
   "license": "MIT",
   "author": "ekkolyth",
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "storybook dev -p 3000 --no-open",
+    "build": "tsup",
+    "build:clean": "rm -rf dist && npm run build",
+    "start": "next start",
+    "lint": "eslint",
+    "build-storybook": "storybook build",
+    "ui-update": "node scripts/shadcn-update.js add",
+    "pub": "node scripts/publish.js"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -70,23 +87,6 @@
       "default": "./dist/convergence.css"
     }
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
-  "scripts": {
-    "dev": "storybook dev -p 3000 --no-open",
-    "build": "tsup",
-    "build:clean": "rm -rf dist && npm run build",
-    "start": "next start",
-    "lint": "eslint",
-    "build-storybook": "storybook build",
-    "ui-update": "node scripts/shadcn-update.js add",
-    "pub": "node scripts/publish.js"
-  },
   "dependencies": {
     "@base-ui/react": "^1.1.0",
     "class-variance-authority": "^0.7.1",
@@ -97,6 +97,8 @@
     "input-otp": "^1.4.2",
     "lucide-react": "^0.562.0",
     "next": "16.1.2",
+    "prettier": "^3.8.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "radix-ui": "^1.4.3",
     "react-day-picker": "^9.13.0",
     "react-resizable-panels": "^4.4.1",

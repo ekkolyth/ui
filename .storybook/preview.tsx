@@ -4,6 +4,7 @@ import React from "react";
 import "../src/components/themes/index.css";
 
 // Ensure Storybook canvas has the theme background
+// Added CSS optimizations to prevent repaints on theme change
 const globalStyles = `
   .sb-story,
   [data-storybook-canvas],
@@ -12,11 +13,23 @@ const globalStyles = `
     background-color: var(--background, oklch(1 0 0)) !important;
     color: var(--foreground, oklch(0.141 0.005 285.823));
   }
+
+  /* Prevent flash during theme transitions */
+  html {
+    transition: none !important;
+  }
+
+  /* Optimize repaints - isolate style changes to prevent full page repaint */
+  .sb-story,
+  [data-storybook-canvas] {
+    contain: style;
+    isolation: isolate;
+  }
 `;
 
 const withCenteredLayout = (Story: any, context: any) => {
     // In docs view, use a lighter layout without full viewport height
-    if (context.viewMode === 'docs') {
+    if (context.viewMode === "docs") {
         return (
             <div
                 className="bg-background text-foreground"
@@ -32,7 +45,7 @@ const withCenteredLayout = (Story: any, context: any) => {
             </div>
         );
     }
-    
+
     // In canvas/story view, use full viewport height
     return (
         <div
@@ -55,18 +68,15 @@ const preview: Preview = {
     decorators: [
         withThemeByDataAttribute({
             themes: {
-                // Light Themes
                 "Convergence - Light": "light",
-                "Catppuccin - Latte": "latte",
-                "EkkoOS - Light": "ekkoos-light",
-                "Convergence": "convergence",
-                // Dark Themes
                 "Convergence - Dark": "dark",
+                "EkkoOS - Light": "ekkoos-light",
+                "EkkoOS - Dark": "ekkoos-dark",
+                "Catppuccin - Latte": "latte",
                 "Catppuccin - Mocha": "mocha",
                 "Catppuccin - Frappe": "frappe",
                 "Catppuccin - Macchiato": "macchiato",
                 "Tokyo Night": "tokyo-night",
-                "EkkoOS - Dark": "ekkoos-dark",
             },
             defaultTheme: "Convergence - Light",
             attributeName: "data-theme",
