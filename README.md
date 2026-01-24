@@ -28,12 +28,6 @@ import { Button, Card, Dialog, useIsMobile, cn } from '@ekkolyth/ui'
 **Components:**
 Built on top of shadcn@latest.
 
-**Hooks:**
-- `useIsMobile()` - Returns `boolean` indicating if viewport width < 768px
-
-**Utils:**
-- `cn(...inputs: ClassValue[])` - Merges Tailwind CSS classes
-
 ### Next.js Theme Provider (`@ekkolyth/ui/next`)
 
 Theme provider for Next.js applications using `next-themes`.
