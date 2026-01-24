@@ -3,7 +3,8 @@ export type SystemTheme = 'light' | 'dark' | 'system' | 'normal';
 export const LIGHT_THEMES = [
   'latte',
   'ekkoos-light',
-  'convergence-light',
+  'ekkolyth-light',
+  'ekko-playlist-light',
 ] as const;
 
 export const DARK_THEMES = [
@@ -12,7 +13,8 @@ export const DARK_THEMES = [
   'macchiato',
   'tokyo-night',
   'ekkoos-dark',
-  'convergence-dark',
+  'ekkolyth-dark',
+  'ekko-playlist-dark',
 ] as const;
 
 export type LightThemes = (typeof LIGHT_THEMES)[number];

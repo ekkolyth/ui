@@ -61,7 +61,8 @@ Returns:
 - `"mocha" | "frappe" | "macchiato" | "latte"` - Catppuccin themes
 - `"tokyo-night"` - Tokyo Night theme
 - `"ekkoos-light" | "ekkoos-dark"` - Ekko OS themes
-- `"convergence-light" | "convergence-dark"` - Convergence themes
+- `"ekkolyth-light" | "ekkolyth-dark"` - Ekkolyth themes
+- `"ekko-playlist-light" | "ekko-playlist-dark"` - Ekko Playlist themes
 
 ### TanStack Router Theme Provider (`@ekkolyth/ui/tanstack`)
 
@@ -107,7 +108,8 @@ import '@ekkolyth/ui/catpuccin/mocha'
 // Other themes
 import '@ekkolyth/ui/tokyo-night'
 import '@ekkolyth/ui/ekko-os'
-import '@ekkolyth/ui/convergence'
+import '@ekkolyth/ui/ekkolyth'
+import '@ekkolyth/ui/ekko-playlist'
 ```
 
 ## Usage Example
@@ -125,8 +127,8 @@ export default function RootLayout({ children }) {
       <body>
         <ThemeProvider
           defaultTheme="system"
-          lightTheme={["latte", "convergence-light"]}
-          darkTheme={["mocha", "convergence-dark"]}
+          lightTheme={["latte", "ekkolyth-light"]}
+          darkTheme={["mocha", "ekkolyth-dark"]}
         >
           {children}
         </ThemeProvider>

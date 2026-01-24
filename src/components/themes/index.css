@@ -9,7 +9,8 @@
 @import "./catpuccin/mocha.css";
 @import "./ekko-os/index.css";
 @import "./tokyo-night/index.css";
-@import "./convergence/index.css";
+@import "./ekkolyth/index.css";
+@import "./ekko-playlist/index.css";
 
 @custom-variant dark (&:is(.dark *));
 

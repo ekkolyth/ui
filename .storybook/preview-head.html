@@ -3,19 +3,20 @@
   (function() {
     // Map Storybook theme names to data-theme values
     const themeMap = {
-      'Convergence - Light': 'light',
+      'Ekkolyth - Light': 'ekkolyth-light',
+      'Ekkolyth - Dark': 'ekkolyth-dark',
+      'Ekko Playlist - Light': 'ekko-playlist-light',
+      'Ekko Playlist - Dark': 'ekko-playlist-dark',
       'Catppuccin - Latte': 'latte',
       'EkkoOS - Light': 'ekkoos-light',
-      'Convergence': 'convergence',
-      'Convergence - Dark': 'dark',
+      'EkkoOS - Dark': 'ekkoos-dark',
       'Catppuccin - Mocha': 'mocha',
       'Catppuccin - Frappe': 'frappe',
       'Catppuccin - Macchiato': 'macchiato',
       'Tokyo Night': 'tokyo-night',
-      'EkkoOS - Dark': 'ekkoos-dark',
     };
     
-    const defaultTheme = 'light'; // Default to "Convergence - Light"
+    const defaultTheme = 'ekkolyth-light'; // Default to "Ekkolyth - Light"
     
     function getThemeFromStorage() {
       try {

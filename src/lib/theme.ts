@@ -46,6 +46,6 @@ export function getDarkThemes(): DarkThemes[] {
  * Default theme mappings for convenience
  */
 export const DEFAULT_THEME_MAPPINGS = {
-  light: ['convergence-light'] as LightThemes[],
-  dark: ['convergence-dark'] as DarkThemes[],
+  light: ['ekkolyth-light'] as LightThemes[],
+  dark: ['ekkolyth-dark'] as DarkThemes[],
 } as const;

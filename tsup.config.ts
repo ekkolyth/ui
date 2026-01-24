@@ -58,8 +58,12 @@ export default defineConfig({
       'dist/tokyo-night.css',
     );
     copyFileSync(
-      'src/components/themes/convergence/index.css',
-      'dist/convergence.css',
+      'src/components/themes/ekkolyth/index.css',
+      'dist/ekkolyth.css',
+    );
+    copyFileSync(
+      'src/components/themes/ekko-playlist/index.css',
+      'dist/ekko-playlist.css',
     );
 
     // Copy and process main theme index.css - rewrite import paths for dist structure
@@ -81,8 +85,12 @@ export default defineConfig({
         '@import "./tokyo-night.css";',
       )
       .replace(
-        /@import "\.\/convergence\/index\.css";/g,
-        '@import "./convergence.css";',
+        /@import "\.\/ekkolyth\/index\.css";/g,
+        '@import "./ekkolyth.css";',
+      )
+      .replace(
+        /@import "\.\/ekko-playlist\/index\.css";/g,
+        '@import "./ekko-playlist.css";',
       );
     writeFileSync('dist/themes.css', themeIndexCss);
   },

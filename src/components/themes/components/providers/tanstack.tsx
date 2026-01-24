@@ -37,10 +37,10 @@ interface TanstackThemeProviderState {
 
 const initialState: TanstackThemeProviderState = {
   systemTheme: 'system',
-  resolvedTheme: 'convergence-light',
+  resolvedTheme: 'ekkolyth-light',
   availableThemes: {
-    light: ['convergence-light'],
-    dark: ['convergence-dark'],
+    light: ['ekkolyth-light'],
+    dark: ['ekkolyth-dark'],
   },
   setSystemTheme: () => null,
   setSpecificTheme: () => null,
@@ -64,8 +64,8 @@ const resolveSystemTheme = (systemTheme: SystemTheme): 'light' | 'dark' => {
 export function TanstackThemeProvider({
   children,
   defaultTheme = 'system',
-  lightTheme = ['convergence-light'],
-  darkTheme = ['convergence-dark'],
+  lightTheme = ['ekkolyth-light'],
+  darkTheme = ['ekkolyth-dark'],
   storageKey = 'ekko-ui',
 }: TanstackThemeProviderProps) {
   // Normalize theme arrays

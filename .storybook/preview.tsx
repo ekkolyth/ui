@@ -68,8 +68,10 @@ const preview: Preview = {
     decorators: [
         withThemeByDataAttribute({
             themes: {
-                "Convergence - Light": "light",
-                "Convergence - Dark": "dark",
+                "Ekkolyth - Light": "ekkolyth-light",
+                "Ekkolyth - Dark": "ekkolyth-dark",
+                "Ekko Playlist - Light": "ekko-playlist-light",
+                "Ekko Playlist - Dark": "ekko-playlist-dark",
                 "EkkoOS - Light": "ekkoos-light",
                 "EkkoOS - Dark": "ekkoos-dark",
                 "Catppuccin - Latte": "latte",
@@ -78,7 +80,7 @@ const preview: Preview = {
                 "Catppuccin - Macchiato": "macchiato",
                 "Tokyo Night": "tokyo-night",
             },
-            defaultTheme: "Convergence - Light",
+            defaultTheme: "Ekkolyth - Light",
             attributeName: "data-theme",
         }),
         (Story) => (

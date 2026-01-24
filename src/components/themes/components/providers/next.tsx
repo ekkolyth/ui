@@ -49,10 +49,10 @@ interface NextThemeProviderState {
 
 const initialState: NextThemeProviderState = {
   systemTheme: 'system',
-  resolvedTheme: 'convergence-light',
+  resolvedTheme: 'ekkolyth-light',
   availableThemes: {
-    light: ['convergence-light'],
-    dark: ['convergence-dark'],
+    light: ['ekkolyth-light'],
+    dark: ['ekkolyth-dark'],
   },
   setSystemTheme: () => null,
   setSpecificTheme: () => null,
@@ -76,8 +76,8 @@ const resolveSystemTheme = (systemTheme: SystemTheme): 'light' | 'dark' => {
 export function NextThemeProvider({
   children,
   defaultTheme = 'system',
-  lightTheme = ['convergence-light'],
-  darkTheme = ['convergence-dark'],
+  lightTheme = ['ekkolyth-light'],
+  darkTheme = ['ekkolyth-dark'],
   storageKey = 'ekko-ui',
   ...props
 }: React.PropsWithChildren<NextThemeProviderPropsExtended>) {

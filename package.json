@@ -82,9 +82,13 @@
       "style": "./dist/tokyo-night.css",
       "default": "./dist/tokyo-night.css"
     },
-    "./convergence": {
-      "style": "./dist/convergence.css",
-      "default": "./dist/convergence.css"
+    "./ekkolyth": {
+      "style": "./dist/ekkolyth.css",
+      "default": "./dist/ekkolyth.css"
+    },
+    "./ekko-playlist": {
+      "style": "./dist/ekko-playlist.css",
+      "default": "./dist/ekko-playlist.css"
     }
   },
   "dependencies": {
