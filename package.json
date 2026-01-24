@@ -1,6 +1,6 @@
 {
   "name": "@ekkolyth/ui",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Shared UI Library for my personal projects",
   "keywords": [
     "theme",
@@ -123,6 +123,7 @@
     "@storybook/addon-vitest": "^10.1.11",
     "@storybook/nextjs-vite": "^10.1.11",
     "@tailwindcss/postcss": "^4.1.18",
+    "@tanstack/react-router": "^1.150.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
     "@testing-library/user-event": "^14.6.1",
@@ -142,13 +143,14 @@
     "globals": "^17.0.0",
     "jsdom": "^27.4.0",
     "next-themes": "^0.4.6",
-    "@tanstack/react-router": "^1.150.0",
     "playwright": "^1.57.0",
+    "postcss": "^8.5.6",
+    "postcss-import": "^16.1.1",
     "storybook": "^10.1.11",
     "tailwindcss": "^4.1.18",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.53.0",
-    "tsup": "^8.5.1",
     "vite": "^7.3.1",
     "vite-tsconfig-paths": "^6.0.4",
     "vitest": "^4.0.17"
