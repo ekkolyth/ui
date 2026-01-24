@@ -6,6 +6,9 @@ import {
   readFileSync,
   writeFileSync,
 } from 'fs';
+import { resolve } from 'path';
+import postcss from 'postcss';
+import postcssImport from 'postcss-import';
 
 export default defineConfig({
   entry: {
@@ -66,32 +69,29 @@ export default defineConfig({
       'dist/ekko-playlist.css',
     );
 
-    // Copy and process main theme index.css - rewrite import paths for dist structure
-    let themeIndexCss = readFileSync(
+    // Process main theme index.css with PostCSS to bundle all imports
+    const themeIndexCss = readFileSync(
       'src/components/themes/index.css',
       'utf-8',
     );
-    themeIndexCss = themeIndexCss
-      .replace(
-        /@import "\.\/catpuccin\/(.+)\.css";/g,
-        '@import "./catpuccin/$1.css";',
-      )
-      .replace(
-        /@import "\.\/ekko-os\/index\.css";/g,
-        '@import "./ekko-os.css";',
-      )
-      .replace(
-        /@import "\.\/tokyo-night\/index\.css";/g,
-        '@import "./tokyo-night.css";',
-      )
-      .replace(
-        /@import "\.\/ekkolyth\/index\.css";/g,
-        '@import "./ekkolyth.css";',
-      )
-      .replace(
-        /@import "\.\/ekko-playlist\/index\.css";/g,
-        '@import "./ekko-playlist.css";',
-      );
-    writeFileSync('dist/themes.css', themeIndexCss);
+
+    const result = await postcss([
+      postcssImport({
+        path: ['src/components/themes', 'node_modules'],
+        resolve: (id, basedir, importOptions) => {
+          // Handle shadcn/tailwind.css special case
+          if (id === 'shadcn/tailwind.css') {
+            return resolve('node_modules/shadcn/dist/tailwind.css');
+          }
+          return id;
+        },
+      }),
+    ]).process(themeIndexCss, {
+      from: 'src/components/themes/index.css',
+      to: 'dist/themes.css',
+    });
+
+    writeFileSync('dist/themes.css', result.css);
+    console.log('✓ Bundled themes.css with all imports inlined');
   },
 });
