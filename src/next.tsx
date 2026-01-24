@@ -7,3 +7,5 @@ export type {
   SystemTheme,
   ThemeName,
 } from './components/themes/components/providers/next';
+
+export { NextToaster as Toaster } from './components/themes/components/sonner';

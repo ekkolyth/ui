@@ -33,7 +33,7 @@ Built on top of shadcn@latest.
 Theme provider for Next.js applications using `next-themes`.
 
 ```tsx
-import { ThemeProvider, useTheme } from '@ekkolyth/ui/next'
+import { ThemeProvider, useTheme, Toaster } from '@ekkolyth/ui/next'
 import type { ThemeProviderProps, SystemTheme, ThemeName } from '@ekkolyth/ui/next'
 ```
 
@@ -63,11 +63,13 @@ Returns:
 Theme provider for TanStack Router applications.
 
 ```tsx
-import { ThemeProvider, useTheme } from '@ekkolyth/ui/tanstack'
+import { ThemeProvider, useTheme, Toaster } from '@ekkolyth/ui/tanstack'
 import type { SystemTheme, ThemeName } from '@ekkolyth/ui/tanstack'
 ```
 
 API matches Next.js provider 1:1
+
+**Note:** The `Toaster` component is exported from the theme provider entries (`/next` and `/tanstack`) and is automatically theme-aware. If you import `Toaster` from the main entry point (`@ekkolyth/ui`), it will be theme-agnostic and you'll need to pass a `theme` prop manually.
 
 ### Theme Components
 
@@ -112,7 +114,7 @@ import '@ekkolyth/ui/ekko-playlist'
 
 ```tsx
 // app/layout.tsx
-import { ThemeProvider } from '@ekkolyth/ui/next'
+import { ThemeProvider, Toaster } from '@ekkolyth/ui/next'
 import '@ekkolyth/ui/themes'
 
 export default function RootLayout({ children }) {
@@ -125,6 +127,7 @@ export default function RootLayout({ children }) {
           darkTheme={["mocha", "ekkolyth-dark"]}
         >
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
@@ -154,8 +157,8 @@ export default function Page() {
 ### TanStack Router Setup
 
 ```tsx
-// router.tsx
-import { ThemeProvider } from '@ekkolyth/ui/tanstack'
+// __root.tsx
+import { ThemeProvider, Toaster } from '@ekkolyth/ui/tanstack'
 import '@ekkolyth/ui/themes'
 
 function App() {
@@ -165,7 +168,8 @@ function App() {
       lightTheme={["latte"]}
       darkTheme={["mocha"]}
     >
-      <Router />
+        <Outlet />
+      <Toaster />
     </ThemeProvider>
   )
 }
