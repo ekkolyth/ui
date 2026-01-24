@@ -1,97 +1,104 @@
-import { defineConfig } from 'tsup';
+import { defineConfig } from "tsup";
 import {
   copyFileSync,
   mkdirSync,
   existsSync,
   readFileSync,
   writeFileSync,
-} from 'fs';
-import { resolve } from 'path';
-import postcss from 'postcss';
-import postcssImport from 'postcss-import';
+} from "fs";
 
 export default defineConfig({
   entry: {
-    index: 'src/index.ts',
-    next: 'src/next.tsx',
-    tanstack: 'src/tanstack.tsx',
-    'providers/next': 'src/components/themes/components/providers/next.tsx',
-    'providers/tanstack':
-      'src/components/themes/components/providers/tanstack.tsx',
-    'themes/theme-toggle':
-      'src/components/themes/components/theme-toggle/index.tsx',
-    'themes/theme-select':
-      'src/components/themes/components/theme-select/index.tsx',
+    index: "src/index.ts",
+    next: "src/next.tsx",
+    tanstack: "src/tanstack.tsx",
+    "providers/next": "src/components/themes/components/providers/next.tsx",
+    "providers/tanstack":
+      "src/components/themes/components/providers/tanstack.tsx",
+    "themes/theme-toggle":
+      "src/components/themes/components/theme-toggle/index.tsx",
+    "themes/theme-select":
+      "src/components/themes/components/theme-select/index.tsx",
   },
-  format: ['esm'],
+  format: ["esm"],
   dts: true,
-  outDir: 'dist',
+  outDir: "dist",
   clean: true,
   splitting: false,
   sourcemap: false,
   treeshake: true,
-  tsconfig: 'tsconfig.build.json',
+  tsconfig: "tsconfig.build.json",
   onSuccess: async () => {
-    // Copy catpuccin themes
-    const catpuccinDir = 'dist/catpuccin';
+    const themeDir = "dist/themes";
+    if (!existsSync(themeDir)) {
+      mkdirSync(themeDir, { recursive: true });
+    }
+    const catpuccinDir = "dist/themes/catpuccin";
     if (!existsSync(catpuccinDir)) {
       mkdirSync(catpuccinDir, { recursive: true });
     }
-    copyFileSync(
-      'src/components/themes/catpuccin/latte.css',
-      'dist/catpuccin/latte.css',
-    );
-    copyFileSync(
-      'src/components/themes/catpuccin/frappe.css',
-      'dist/catpuccin/frappe.css',
-    );
-    copyFileSync(
-      'src/components/themes/catpuccin/macchiato.css',
-      'dist/catpuccin/macchiato.css',
-    );
-    copyFileSync(
-      'src/components/themes/catpuccin/mocha.css',
-      'dist/catpuccin/mocha.css',
-    );
-
     // Copy individual theme files
-    copyFileSync('src/components/themes/ekko-os/index.css', 'dist/ekko-os.css');
     copyFileSync(
-      'src/components/themes/tokyo-night/index.css',
-      'dist/tokyo-night.css',
-    );
-    copyFileSync(
-      'src/components/themes/ekkolyth/index.css',
-      'dist/ekkolyth.css',
+      "src/components/themes/catpuccin/latte.css",
+      "dist/themes/catpuccin/latte.css",
     );
     copyFileSync(
-      'src/components/themes/ekko-playlist/index.css',
-      'dist/ekko-playlist.css',
+      "src/components/themes/catpuccin/frappe.css",
+      "dist/themes/catpuccin/frappe.css",
+    );
+    copyFileSync(
+      "src/components/themes/catpuccin/macchiato.css",
+      "dist/themes/catpuccin/macchiato.css",
+    );
+    copyFileSync(
+      "src/components/themes/catpuccin/mocha.css",
+      "dist/themes/catpuccin/mocha.css",
     );
 
-    // Process main theme index.css with PostCSS to bundle all imports
-    const themeIndexCss = readFileSync(
-      'src/components/themes/index.css',
-      'utf-8',
+    copyFileSync(
+      "src/components/themes/ekko-os/index.css",
+      "dist/themes/ekko-os.css",
     );
 
-    const result = await postcss([
-      postcssImport({
-        path: ['src/components/themes', 'node_modules'],
-        resolve: (id, basedir, importOptions) => {
-          // Handle shadcn/tailwind.css special case
-          if (id === 'shadcn/tailwind.css') {
-            return resolve('node_modules/shadcn/dist/tailwind.css');
-          }
-          return id;
-        },
-      }),
-    ]).process(themeIndexCss, {
-      from: 'src/components/themes/index.css',
-      to: 'dist/themes.css',
-    });
+    copyFileSync(
+      "src/components/themes/tokyo-night/index.css",
+      "dist/themes/tokyo-night.css",
+    );
+    copyFileSync(
+      "src/components/themes/ekkolyth/index.css",
+      "dist/themes/ekkolyth.css",
+    );
+    copyFileSync(
+      "src/components/themes/ekko-playlist/index.css",
+      "dist/themes/ekko-playlist.css",
+    );
 
-    writeFileSync('dist/themes.css', result.css);
-    console.log('✓ Bundled themes.css with all imports inlined');
+    // Copy and process main theme index.css - rewrite import paths for dist structure
+    let themeIndexCss = readFileSync(
+      "src/components/themes/index.css",
+      "utf-8",
+    );
+    themeIndexCss = themeIndexCss
+      .replace(
+        /@import "\.\/catpuccin\/(.+)\.css";/g,
+        '@import "./themes/catpuccin/$1.css";',
+      )
+      .replace(
+        /@import "\.\/ekko-os\/index\.css";/g,
+        '@import "./themes/ekko-os.css";',
+      )
+      .replace(
+        /@import "\.\/tokyo-night\/index\.css";/g,
+        '@import "./themes/tokyo-night.css";',
+      )
+      .replace(
+        /@import "\.\/ekkolyth\/index\.css";/g,
+        '@import "./themes/ekkolyth.css";',
+      )
+      .replace(
+        /@import "\.\/ekko-playlist\/index\.css";/g,
+        '@import "./themes/ekko-playlist.css";',
+      );
+    writeFileSync("dist/themes/index.css", themeIndexCss);
   },
 });
